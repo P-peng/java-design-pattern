@@ -1,4 +1,4 @@
-package com.ge.my.factoryMehtod;
+package com.ge.my.creation.factoryMehtod;
 
 /**
  * 工厂方法设计模式

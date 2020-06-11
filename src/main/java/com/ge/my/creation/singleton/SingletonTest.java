@@ -1,4 +1,4 @@
-package com.ge.my.singleton;
+package com.ge.my.creation.singleton;
 
  /**
   * 单例模式

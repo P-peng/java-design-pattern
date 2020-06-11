@@ -1,4 +1,4 @@
-package com.ge.my.abstractFactory;
+package com.ge.my.creation.abstractFactory;
 
 /**
  * @author dengzhipeng

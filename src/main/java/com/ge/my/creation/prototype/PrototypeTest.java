@@ -1,4 +1,4 @@
-package com.ge.my.prototype;
+package com.ge.my.creation.prototype;
 
 /**
  * @author dengzhipeng
