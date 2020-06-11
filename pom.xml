@@ -8,6 +8,12 @@
     <version>1.0-SNAPSHOT</version>
     <artifactId>java-design-pattern</artifactId>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-plugins.version>3.1</maven-plugins.version>
+        <java.version>1.8</java.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
@@ -31,4 +37,19 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-plugins.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
