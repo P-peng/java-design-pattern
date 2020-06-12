@@ -64,7 +64,7 @@ public class ProxyTest {
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
-            if(null!=out) try {
+            if(null != out) try {
                 out.close();
             } catch (IOException e) {
                 e.printStackTrace();
