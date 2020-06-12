@@ -106,14 +106,17 @@ class HuaWeiCharger implements Charger{
  */
 class HuaWeiFactory implements AbstractFactory{
 
+    @Override
     public Phone createPhone() {
         return new HuaWeiPhone();
     }
 
+    @Override
     public Headset createHeadset() {
         return new HuaWeiHeadset();
     }
 
+    @Override
     public Charger createCharger() {
         return new HuaWeiCharger();
     }
@@ -161,14 +164,17 @@ class XiaoMiCharger implements Charger{
  */
 class XiaoMiFactory implements AbstractFactory{
 
+    @Override
     public Phone createPhone() {
         return new XiaoMiPhone();
     }
 
+    @Override
     public Headset createHeadset() {
         return new XiaoMiHeadset();
     }
 
+    @Override
     public Charger createCharger() {
         return new XiaoMiCharger();
     }

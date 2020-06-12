@@ -64,6 +64,7 @@ class HuaWeiFactory implements Factory{
      *
      * @return
      */
+    @Override
     public Product createProduct() {
         return new HuaWeiProduct();
     }
@@ -89,6 +90,7 @@ class XiaoMiFactory implements Factory{
      *
      * @return
      */
+    @Override
     public Product createProduct() {
         return new XiaoMiProduct();
     }
@@ -119,6 +121,7 @@ class RongYaoFactory implements Factory{
      *
      * @return
      */
+    @Override
     public Product createProduct() {
         return new RongYaoProduct();
     }
