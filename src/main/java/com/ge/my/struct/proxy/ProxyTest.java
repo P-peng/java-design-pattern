@@ -64,10 +64,12 @@ public class ProxyTest {
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
-            if(null != out) try {
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(null != out) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -110,6 +112,7 @@ class RealSubject implements Subject {
      * @param name
      * @return
      */
+    @Override
     public String sayHello(String name) {
         return "hello " + name;
     }
@@ -119,6 +122,7 @@ class RealSubject implements Subject {
      *
      * @return
      */
+    @Override
     public String sayGoodBye() {
         return " good bye ";
     }
@@ -153,6 +157,7 @@ class InvocationHandlerImpl implements InvocationHandler {
      * @return
      * @throws Throwable
      */
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         //在代理真实对象前我们可以添加一些自己的操作
         System.out.println("在调用之前，我要干点啥呢？");
