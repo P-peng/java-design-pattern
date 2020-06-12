@@ -1,5 +1,12 @@
 package com.ge.my.struct.proxy;
 
+import org.junit.Test;
+import sun.misc.ProxyGenerator;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -15,12 +22,11 @@ public class ProxyTest {
     /**
      * jdk 动态代理
      *
-     * @param args
      */
-    public static void main(String[] args) {
+    @Test
+    public void jdkMain() {
         // 代理的真实对象
         Subject realSubject = new RealSubject();
-
         /**
          * InvocationHandlerImpl 实现了 InvocationHandler 接口，并能实现方法调用从代理类到委托类的分派转发
          * 其内部通常包含指向委托类实例的引用，用于真正执行分派转发过来的方法调用.
@@ -38,9 +44,37 @@ public class ProxyTest {
         Subject subject = (Subject) Proxy.newProxyInstance(loader, interfaces, handler);
 
         System.out.println("动态代理对象的类型：" + subject.getClass().getName());
-
-        String hello = subject.SayHello("zhipeng");
+        String hello = subject.sayHello("zhipeng");
         System.out.println(hello);
+
+        // 输出代理类
+//        createProxyClassFile();
+    }
+
+    private static void createProxyClassFile(){
+        String name = "ProxySubject";
+        byte[] data = ProxyGenerator.generateProxyClass(name,new Class[]{Subject.class});
+        FileOutputStream out =null;
+        try {
+            out = new FileOutputStream(name+".class");
+            System.out.println((new File("hello")).getAbsolutePath());
+            out.write(data);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(null!=out) try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    @Test
+    public void cglibMain() {
 
     }
 
@@ -58,14 +92,14 @@ interface Subject {
      * @param name
      * @return
      */
-    String SayHello(String name);
+    String sayHello(String name);
 
     /**
      * 再见
      *
      * @return
      */
-    String SayGoodBye();
+    String sayGoodBye();
 }
 
 class RealSubject implements Subject {
@@ -76,7 +110,7 @@ class RealSubject implements Subject {
      * @param name
      * @return
      */
-    public String SayHello(String name) {
+    public String sayHello(String name) {
         return "hello " + name;
     }
 
@@ -85,7 +119,7 @@ class RealSubject implements Subject {
      *
      * @return
      */
-    public String SayGoodBye() {
+    public String sayGoodBye() {
         return " good bye ";
     }
 }
@@ -105,8 +139,7 @@ class InvocationHandlerImpl implements InvocationHandler {
      *
      * @param subject
      */
-    public InvocationHandlerImpl(Object subject)
-    {
+    public InvocationHandlerImpl(Object subject) {
         this.subject = subject;
     }
 
