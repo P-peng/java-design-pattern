@@ -18,7 +18,7 @@ public class PrototypeTest {
 
 class Prototype implements Cloneable{
 
-
+    @Override
     public Prototype clone() throws CloneNotSupportedException {
         System.out.println("对象克隆");
         return (Prototype) super.clone();
